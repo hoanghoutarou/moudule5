@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 
 <!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 08:08:37 GMT -->
@@ -148,7 +148,7 @@
                             <div class="media profile-media">
                                 <img class="user-profile rounded-circle" th:src="@{/admin/assets/images/users/4.jpg}" alt="">
                                 <div class="user-name-hide media-body">
-                                    <span>Emay Walter</span>
+                                    <span sec:authentication="principal.users.username"></span>
                                     <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
                                 </div>
                             </div>
@@ -249,8 +249,9 @@
                                                     <td th:text="${product.description}"></td>
                                                     <td th:text="${product.quantity}"></td>
                                                     <td th:text="${product.price}"></td>
-                                                    <td th:text="${product.image}"></td>
-                                                    <td th:text="${product.category.name}"></td>
+                                                    <td><img th:src="@{|/upload/${product.image}|}"></td>
+
+                                                    <td th:text="${product.category.name}" height="10"></td>
                                                     <td th:if="${product.status}"><span class="badge badge-success">Active</span></td>
                                                     <td th:if="${!product.status}"><span class="badge badge-danger">InActive</span></td>
                                                     <td th:text="${product.created}"></td>

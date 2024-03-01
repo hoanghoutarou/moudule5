@@ -10,26 +10,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-//@Controller
+@Controller
 public class AuthController {
-//    @Autowired
-//    private UserService userService;
-//
-//    @GetMapping("/login")
-//    public String Login() {
-//        return "auth/login";
-//    }
-//
-//    @GetMapping("/register")
-//    public String register(Model model) {
-//        User user = new User();
-//        model.addAttribute("user", user);
-//        return "auth/register";
-//    }
-//
-//    @PostMapping("/register")
-//    public String register(@ModelAttribute("user") User user) {
-//        userService.handleRegister(user);
-//        return "redirect:/login";
-//    }
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/login")
+    public String Login() {
+        return "auth/login";
+    }
+
+    @GetMapping("/sign-up")
+    public String register(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "auth/sign-up";
+    }
+
+    @PostMapping("/sign-up")
+    public String register(@ModelAttribute("user") User user) {
+        userService.handleRegister(user);
+        return "redirect:/login";
+    }
 }

@@ -14,7 +14,6 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-
     @GetMapping("/category")
     public String index(Model model){
         List<Category> list = categoryService.getAll();
@@ -25,12 +24,14 @@ public class CategoryController {
     public String add(Model model){
         Category category = new Category();
         category.setStatus(true);
+
         model.addAttribute("category",category);
         return "admin/category/add-new-category";
     }
     @PostMapping("/add-new-category")
     public String save(@ModelAttribute("category") Category category){
         if(this.categoryService.create(category)) {
+
             return "redirect:/admin/category";
         }else {
             return "admin/category/add-new-category";

@@ -5,16 +5,27 @@ import com.ra.module5version2.model.entity.Product;
 import com.ra.module5version2.service.Category.CategoryService;
 import com.ra.module5version2.service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+
+
+import java.sql.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
 public class ProductController {
+    @Value("${path-upload}")
+    private String pathUpload;
+
     @Autowired
     private ProductService productService;
     @Autowired
@@ -28,14 +39,24 @@ public class ProductController {
     @GetMapping("/add-new-product")
     public String add(Model model){
         Product product = new Product();
+        product.setSku(UUID.randomUUID().toString());
         product.setStatus(true);
+        product.setCreated(new java.sql.Date(new java.util.Date().getTime()));
         List<Category> listCategories = this.categoryService.getAll();
         model.addAttribute("listCategories",listCategories);
         model.addAttribute("product",product);
         return "admin/product/add-new-product";
     }
     @PostMapping("/add-new-product")
-    public String save(@ModelAttribute("product") Product product,@RequestParam("file") MultipartFile file){
+    public String save(@ModelAttribute("product") Product product,@RequestParam("imageProduct") MultipartFile file){
+        String fileName = file.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(file.getBytes(),new File(pathUpload+fileName));
+            // lưu tên file vào database
+            product.setImage(fileName);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         if(this.productService.create(product)) {
             return "redirect:/admin/product";
         }else {
@@ -46,6 +67,7 @@ public class ProductController {
     public String edit(Model model, @PathVariable("id") Long id){
         Product product = this.productService.findById(id);
         List<Category> listCategories = this.categoryService.getAll();
+        product.setUpdated(new Date(new java.util.Date().getTime()));
         model.addAttribute("listCategories",listCategories);
         model.addAttribute("product", product);
         return "admin/product/edit-product";

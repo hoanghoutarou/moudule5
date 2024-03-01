@@ -27,7 +27,7 @@
                 <div class="toggle-sidebar">
                     <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
                     <a href="index.html">
-                        <img src="assets/images/logo/1.png" class="img-fluid" alt="">
+                        <img th:src="@{/admin/assets/images/logo/1.png}" class="img-fluid" alt="">
                     </a>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                                         </div>
 
                                         <form class="theme-form theme-form-2 mega-form" role="form" method="post" th:action="@{/admin/add-new-product}"
-                                              th:object="${product}">
+                                              th:object="${product}" enctype="multipart/form-data">
                                             <div class="mb-4 row align-items-center">
                                                 <label class="form-label-title col-sm-3 mb-0">Product Name</label>
                                                 <div class="col-sm-9">
@@ -203,8 +203,8 @@
                                                 <label
                                                         class="col-sm-3 col-form-label form-label-title">Images</label>
                                                 <div class="col-sm-9">
-                                                    <input class="form-control form-choose" type="file"
-                                                           id="formFile" multiple  th:field="*{image}">
+                                                    <input type="file" class="form-control" th:name="imageProduct" >
+                                                    <input type="hidden" class="form-control" th:field="*{image}" id="imageChoose">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">
@@ -234,24 +234,24 @@
                                                 </div>
 
                                             </div>
-                                            <div class="mb-4 row align-items-center">
-                                                <label class="form-label-title col-sm-3 mb-0">Created</label>
-                                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" wfd-id="id15">
-                                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-4 row align-items-center">
-                                                <label class="form-label-title col-sm-3 mb-0">Upadate</label>
-                                                <div class="input-group date" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" wfd-id="id15">
-                                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+<!--                                            <div class="mb-4 row align-items-center">-->
+<!--                                                <label class="form-label-title col-sm-3 mb-0">Created</label>-->
+<!--                                                <div class="input-group date" id="reservationdate" data-target-input="nearest">-->
+<!--                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" wfd-id="id15">-->
+<!--                                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">-->
+<!--                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="mb-4 row align-items-center">-->
+<!--                                                <label class="form-label-title col-sm-3 mb-0">Upadate</label>-->
+<!--                                                <div class="input-group date" data-target-input="nearest">-->
+<!--                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" wfd-id="id15">-->
+<!--                                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">-->
+<!--                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <button>SUBMIT</button>
                                         </form>
                                     </div>

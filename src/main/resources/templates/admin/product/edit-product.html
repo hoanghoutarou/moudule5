@@ -169,7 +169,7 @@
                                         </div>
 
                                         <form class="theme-form theme-form-2 mega-form" role="form" method="post" th:action="@{/admin/edit-product}"
-                                              th:object="${product}">
+                                              th:object="${product}" enctype="multipart/form-data">
                                             <input class="form-control" type="hidden" th:field="*{id}">
                                             <input class="form-control" type="hidden" th:field="*{sku}">
                                             <div class="mb-4 row align-items-center">
@@ -205,8 +205,8 @@
                                                 <label
                                                         class="col-sm-3 col-form-label form-label-title">Images</label>
                                                 <div class="col-sm-9">
-                                                    <input class="form-control form-choose" type="file"
-                                                           id="formFile" multiple  th:field="*{image}">
+                                                    <input type="file" class="form-control" th:name="imageProduct" >
+                                                    <input type="hidden" class="form-control" th:field="*{image}" id="imageChoose">
                                                 </div>
                                             </div>
                                             <div class="mb-4 row align-items-center">

@@ -19,6 +19,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Boolean create(Product product) {
         try {
+
             this.productRepository.save(product);
             return true;
         }catch (Exception e) {
@@ -52,5 +53,11 @@ public class ProductServiceImpl implements ProductService {
             e.printStackTrace();
         }
         return false;
+
+    }
+
+    @Override
+    public List<Product> getByCategoryId(Long id) {
+        return productRepository.findByCategoryId(id);
     }
 }

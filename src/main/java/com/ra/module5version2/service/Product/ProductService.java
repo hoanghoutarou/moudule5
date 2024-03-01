@@ -10,4 +10,5 @@ public interface ProductService {
     Product findById(Long id);
     Boolean update(Product product);
     Boolean delete(Long id);
+    List<Product> getByCategoryId(Long id);
 }
