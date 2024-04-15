@@ -39,9 +39,7 @@ public class ProductController {
     @GetMapping("/add-new-product")
     public String add(Model model){
         Product product = new Product();
-        product.setSku(UUID.randomUUID().toString());
         product.setStatus(true);
-        product.setCreated(new java.sql.Date(new java.util.Date().getTime()));
         List<Category> listCategories = this.categoryService.getAll();
         model.addAttribute("listCategories",listCategories);
         model.addAttribute("product",product);
@@ -82,7 +80,7 @@ public class ProductController {
     }
     @GetMapping("/delete-product/{id}")
     public String delete( @PathVariable("id") Long id){
-        if(this.categoryService.delete(id)){
+        if(this.productService.delete(id)){
             return "redirect:/admin/product";
         }
         else {
