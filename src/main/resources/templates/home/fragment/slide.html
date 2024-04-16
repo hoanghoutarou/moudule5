@@ -3,11 +3,11 @@
         <div class="category-menu">
             <h3>Category</h3>
             <ul>
-                <li th:each="item : ${session.categories}" th:href="@{/categories/{categoriesId}(categoriesId=${item.id})}">
+                <li th:each="item : ${session.categories}">
                     <div class="category-list" >
-                        <img th:src="${item.icon}" class="blur-up lazyload" alt="">
+                        <img  th:src="@{|/upload/${item.icon}|}" class="blur-up lazyload" alt="">
                         <h5>
-                            <a href="shop-left-sidebar.html" th:text="${item.name}">Vegetables & Fruit</a>
+                            <a th:href="@{/user/product/productByCategory/{categoriesId}(categoriesId=${item.id})}" th:text="${item.name}"></a>
                         </h5>
                     </div>
                 </li>
@@ -41,7 +41,7 @@
 
         <div class="ratio_156 section-t-space">
             <div class="home-contain hover-effect">
-                <img th:src="@{/home/assets/images/vegetable/banner/8.jpg}" class="bg-img blur-up lazyload"
+                <img th:src="@{home}" class="bg-img blur-up lazyload"
                      alt="">
                 <div class="home-detail p-top-left home-p-medium">
                     <div>
@@ -59,7 +59,7 @@
 
         <div class="ratio_medium section-t-space">
             <div class="home-contain hover-effect">
-                <img th:src="@{/home/assets/images/vegetable/banner/11.jpg}" class="img-fluid blur-up lazyload"
+                <img th:src="@{home}" class="img-fluid blur-up lazyload"
                      alt="">
                 <div class="home-detail p-top-left home-p-medium">
                     <div>
@@ -83,7 +83,7 @@
                     <li>
                         <div class="offer-product">
                             <a href="product-left-thumbnail.html" class="offer-image">
-                                <img th:src="@{/home/assets/images/vegetable/product/23.png}"
+                                <img th:src="@{home}"
                                      class="blur-up lazyload" alt="">
                             </a>
 
@@ -102,7 +102,7 @@
                     <li>
                         <div class="offer-product">
                             <a href="product-left-thumbnail.html" class="offer-image">
-                                <img th:src="@{/home/assets/images/vegetable/product/24.png}"
+                                <img th:src="@{home}"
                                      class="blur-up lazyload" alt="">
                             </a>
 
@@ -121,7 +121,7 @@
                     <li>
                         <div class="offer-product">
                             <a href="product-left-thumbnail.html" class="offer-image">
-                                <img th:src="@{/home//assets/images/vegetable/product/25.png}"
+                                <img th:src="@{home}"
                                      class="blur-up lazyload" alt="">
                             </a>
 
@@ -140,7 +140,7 @@
                     <li class="mb-0">
                         <div class="offer-product">
                             <a href="product-left-thumbnail.html" class="offer-image">
-                                <img th:src="@{/home/assets/images/vegetable/product/26.png}"
+                                <img th:src="@{home}"
                                      class="blur-up lazyload" alt="">
                             </a>
 
@@ -173,7 +173,7 @@
 
                     <div class="review-profile">
                         <div class="review-image">
-                            <img th:src="@{/home/assets/images/vegetable/review/1.jpg}"
+                            <img th:src="@{home}"
                                  class="img-fluid blur-up lazyload" alt="">
                         </div>
                         <div class="review-detail">

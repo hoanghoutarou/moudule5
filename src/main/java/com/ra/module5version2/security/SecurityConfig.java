@@ -52,7 +52,7 @@ public class SecurityConfig {
 
     @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
-        return (web -> web.ignoring().requestMatchers("/admin/**","/user/**", "/upload/**","/home/assets/**"));
+        return (web -> web.ignoring().requestMatchers("/admin/assets/**", "/upload/**","/home/assets/**"));
     }
 
     @Bean
