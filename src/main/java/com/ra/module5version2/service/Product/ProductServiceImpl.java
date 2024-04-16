@@ -5,6 +5,7 @@ import com.ra.module5version2.reporsitory.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
     public Boolean create(Product product) {
         try {
             product.setSku(UUID.randomUUID().toString());
-            product.setCreated(new java.sql.Date(new java.util.Date().getTime()));
+            product.setCreated(new Date(new java.util.Date().getTime()));
             this.productRepository.save(product);
             return true;
         }catch (Exception e) {
@@ -39,8 +40,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Boolean update(Product product) {
         try {
-            this.productRepository.save(product);
+            product.setCreated(product.getCreated());
             product.setUpdated(new java.sql.Date(new java.util.Date().getTime()));
+            this.productRepository.save(product);
+
             return true;
         }catch (Exception e) {
             e.printStackTrace();

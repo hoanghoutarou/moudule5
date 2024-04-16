@@ -65,14 +65,13 @@ public class ProductController {
     public String edit(Model model, @PathVariable("id") Long id){
         Product product = this.productService.findById(id);
         List<Category> listCategories = this.categoryService.getAll();
-        product.setUpdated(new Date(new java.util.Date().getTime()));
         model.addAttribute("listCategories",listCategories);
         model.addAttribute("product", product);
         return "admin/product/edit-product";
     }
     @PostMapping("/edit-product")
-    public String upadate(@ModelAttribute("product") Product product){
-        if(this.productService.create(product)) {
+    public String update(@ModelAttribute("product") Product product){
+        if(this.productService.update(product)) {
             return "redirect:/admin/product";
         }else {
             return "admin/product/add-new-product";
